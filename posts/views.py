@@ -15,6 +15,5 @@ def now_time(request):
     return HttpResponse(f"{datetime.date.today()}")
 
 
-
 def goodby(request):
     return HttpResponse('Goodby user!')
