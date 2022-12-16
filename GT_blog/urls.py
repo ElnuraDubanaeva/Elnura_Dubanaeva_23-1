@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from posts.views import hello, goodby,now_time,main
+from posts.views import hello, goodby,now_time,main,products_view
 
 
 urlpatterns = [
@@ -23,5 +23,6 @@ urlpatterns = [
     path('',main),
     path('hello/',hello),
     path('goodby/',goodby),
-    path('now_time',now_time)
+    path('now_time',now_time),
+    path('products/',products_view)
 ]

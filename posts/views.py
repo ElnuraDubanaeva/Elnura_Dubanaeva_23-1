@@ -1,10 +1,11 @@
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, render
 import datetime
+from posts.models import Products
 
 
 # Create your views here.
 def main(request):
-    return HttpResponse(f'{request.path},{request.method}')
+    return render(request, 'layouts/index.html')
 
 
 def hello(request):
@@ -17,3 +18,12 @@ def now_time(request):
 
 def goodby(request):
     return HttpResponse('Goodby user!')
+
+
+def products_view(requests):
+    if requests.method == 'GET':
+        products = Products.objects.all()
+
+        return render(requests, 'products/products.html', context={
+            'products': products
+        })
