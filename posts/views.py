@@ -1,6 +1,6 @@
 from django.shortcuts import HttpResponse, render
 import datetime
-from posts.models import Products
+from posts.models import Product
 
 
 # Create your views here.
@@ -22,8 +22,19 @@ def goodby(request):
 
 def products_view(requests):
     if requests.method == 'GET':
-        products = Products.objects.all()
+        products = Product.objects.all()
 
         return render(requests, 'products/products.html', context={
-            'products': products
+            'products': products,
+
         })
+
+
+def products_detail_view(requests, id):
+    if requests.method == 'GET':
+        products = Product.objects.get(id=id)
+        context = {
+            'products': products,
+            'reviews': products.reviews.all()
+        }
+        return render(requests, 'products/detail.html', context=context)
