@@ -2,12 +2,12 @@
 
 {% block content %}
     <style type="text/css">
-        .post {
+        .products {
             width: 80%;
             margin-left: 10%;
         }
 
-        .post > h5 {
+        .products> h5 {
             margin-top: 20px;
         }
 
@@ -15,9 +15,11 @@
             display: flex;
             justify-content: space-between;
         }
+
         .reviews {
             margin-top: 30px;
         }
+
         .review_block {
             height: max-content;
             padding: 10px;
@@ -25,10 +27,25 @@
             color: #242b2e;
             background: #cbcbcb;
         }
+        .products  img {
+            width: 100%;
+        }
     </style>
     <div class="products">
+        {% if products.image %}
+            <img src="/media/{{ products.image }}" alt="image not found:(">
+        {% else %}
+            <img src="/media/image_not_found.png" alt="image not found:(">
+        {% endif %}
         <h1>{{ products.title }}</h1>
         <h5>{{ products.description }}</h5>
+        <div class="categories">
+            {% for category in categories %}
+                <div class = "category">
+                    <h6>{{ category.title }}</h6>
+                </div>
+            {% endfor %}
+        </div>
         <div class="dates">
             <h6>{{ products.created_date }}</h6>
             <h6>{{ products.modified_date }}</h6>

@@ -2,6 +2,9 @@ from django.db import models
 
 
 # Create your models here.
+class Categories(models.Model):
+    title = models.CharField(max_length=55)
+
 
 class Product(models.Model):
     image = models.ImageField(blank=True, null=True)
@@ -10,6 +13,7 @@ class Product(models.Model):
     created_date = models.DateField(auto_now=True)
     modified_date = models.DateField(auto_now_add=True)
     price = models.FloatField()
+    categories = models.ManyToManyField(Categories)
 
 
 class Review(models.Model):
