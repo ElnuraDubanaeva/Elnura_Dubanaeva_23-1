@@ -14,6 +14,7 @@ class Product(models.Model):
     modified_date = models.DateField(auto_now_add=True)
     price = models.FloatField()
     categories = models.ManyToManyField(Categories)
+    reviewtable = models.BooleanField(default=True)
 
 
 class Review(models.Model):
