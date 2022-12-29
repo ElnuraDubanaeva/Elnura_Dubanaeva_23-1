@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -7,8 +8,9 @@ class Categories(models.Model):
 
 
 class Product(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     image = models.ImageField(blank=True, null=True)
-    product = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
     description = models.TextField()
     created_date = models.DateField(auto_now=True)
     modified_date = models.DateField(auto_now_add=True)
@@ -18,6 +20,7 @@ class Product(models.Model):
 
 
 class Review(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     post = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, related_name="reviews")
     text = models.TextField()
     created_date = models.DateField(auto_now=True)
