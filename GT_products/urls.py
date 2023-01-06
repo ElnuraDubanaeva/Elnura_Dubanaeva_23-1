@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from posts.views import hello, good_buy, now_time, main, products_view, products_detail_view, categories_view, \
-    product_create_view
-from users.views import login_view, logout_view, register_view
+from posts.views import (hello,
+                         good_buy,
+                         now_time, main,
+                         ProductCBV,
+                         ProductDetailCBV,
+                         CategoriesCBV,
+                         CreateFormCBV)
+from users.views import LoginCBV, LogoutCBV, SignUpCBV
 from django.conf.urls.static import static
 from GT_products.settings import MEDIA_URL, MEDIA_ROOT
 
@@ -27,12 +32,12 @@ urlpatterns = [
     path('hello/', hello),
     path('good_buy/', good_buy),
     path('now_time', now_time),
-    path('products/', products_view),
-    path('products/<int:id>/', products_detail_view),
-    path('categories/', categories_view),
-    path('products/create/', product_create_view),
-    path('users/login/',login_view),
-    path('users/logout/', logout_view),
-    path('users/register/', register_view)
+    path('products/', ProductCBV.as_view()),
+    path('products/<int:id>/', ProductDetailCBV.as_view()),
+    path('categories/', CategoriesCBV.as_view()),
+    path('products/create/', CreateFormCBV.as_view()),
+    path('users/login/', LoginCBV.as_view()),
+    path('users/logout/', LogoutCBV.as_view()),
+    path('users/register/', SignUpCBV.as_view())
 ]
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

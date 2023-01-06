@@ -24,8 +24,8 @@
             height: max-content;
             padding: 10px;
             border: 1px solid #242b2e;
-            color: #242b2e;
-            background: #cbcbcb;
+            color: #FFFDFC;
+            background: #6E5973;
         }
 
         .products img {
@@ -40,7 +40,7 @@
         {% endif %}
         <div style="display: flex; justify-content: space-between; ">
             <h1>{{ products.title }}</h1>
-            <h1>{{ products.author.username }}</h1>
+            <h2>{{ products.author.username}}</h2>
         </div>
         <h5>{{ products.description }}</h5>
         <div class="categories">
@@ -59,18 +59,19 @@
                 {% csrf_token %}
                 {{ review_form }}
                 <input type="submit" class="btn">
-
             </form>
             <div class="reviews">
                 {% for review in reviews %}
-                    <div class="review_block">
-                        <h3>{{ review.author.username }}</h3>
-                        <h6>{{ review.text }}</h6>
+                    <div class="review_block" style="margin-bottom: 5px">
+                        <p style="margin-left:930px;"><font size="4" color="#f5f5f5"
+                                                            face="Arial"><em><i>{{ review.author.username }}</i></em></font>
+                        </p>
+                        <h5>{{ review.text }}</h5>
                         <p>{{ review.created_date }}</p>
+                        <p>{{ review.modified_date }}</p>
                     </div>
                 {% endfor %}
             </div>
         {% endif %}
-
     </div>
 {% endblock %}
